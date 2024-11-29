@@ -19,5 +19,5 @@ abstract class Personne{
        protected void setIdentifiant(int identifiant)  {int.identifiant = identifiant;};
        protected void setContact(int contact)   {int.contact = contact;};
 
-
+//alexia
        abstract void Afficher();
