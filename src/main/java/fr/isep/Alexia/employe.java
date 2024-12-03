@@ -3,7 +3,7 @@ package fr.isep.Alexia;
 abstract  class Employe extends Personne{
         protected int NumeroEmploye;
                     int DateEmbauche ;
-          protected  String Presonne (String nom , int identifiant, int adresse,
+          protected  String Personne (String nom , int identifiant, int adresse,
                               int contact, int numeroemploye, int dateembauche) {
               super (nom, identifiant,adresse, contact );
               this.DateEmbauche = DateEmbauche;

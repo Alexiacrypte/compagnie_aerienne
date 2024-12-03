@@ -6,7 +6,7 @@ public class Passager extends Personne  {
     public  class Passeport {
         String nom, Stringpasseport, int identifiant, int adresse, int contact, ;
     }
-    super (nom, identifiant, adresse, contact);
+    super (nom, identifiant, adresse, contact, passeport);
     this.Stringpasseport = string passeport;
 
 }

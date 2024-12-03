@@ -1,13 +1,13 @@
 package fr.isep.Alexia;
 
 public class Pilote extends Employe {
-    private String LicenceheuresDeVol;
+    private String Licence int heuresDeVol;
     public class Pilote {
-         String LicenceheuresDeVol , String nom,
+         String Licence intheuresDeVol , String nom,
         int identifiant, int adresse, int contact
     }
     super int adresse, int contact, int identifiant,
-    String nom, StringLicenceheuresDeVol
+    String nom, StringLicence intheuresDeVol
 }
 public StringLicenceheuresDeVol getStringLicenceheuresDeVol(){
     return StringLicenceheuresDeVol
