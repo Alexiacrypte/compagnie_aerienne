@@ -29,8 +29,110 @@ public void seetintReservation(intResevation intReservation){
 public void setStringstatut(Stringstatut Stringstatut){
     this.Stringstatut = Stringstatut
 }
-voi Afficher(){
+void Afficher(){
     System.out.println();
     System.out.println();
     System.out.println();
 }
+
+package fr.isep.hal;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
+import org.apache.commons.csv.CSVRecord;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class DemoCSV {
+    public static void main(String[] args) throws IOException {
+        var reservations = lireCSV();
+        //ecrireCSV(reservaions);
+        ecrireCSV_try(reservation);
+    }
+
+    private static void ecrireCSV(List<Map<String, String>> reservations) throws IOException {
+        FileWriter fch = new FileWriter("nv_reservations.csv");
+
+        CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
+                .setHeader(new String[]{"jour", "de", "à", "id", "prévu à"})
+                .build();
+
+        CSVPrinter printer = new CSVPrinter(fch, csvFormat);
+        for (var reservation : reservations) {
+            printer.printRecord(
+                    vol.get("Date"),
+                    vol.get("Dép"),
+                    vol.get("Arriv"),
+                    vol.get("Code"),
+                    vol.get("Heure")
+            );
+        }
+
+        fch.close(); // Attention, fichier EN ECRITURE non fermé si exception
+
+    }
+
+    private static void ecrireCSV_try(List<Map<String, String>> reservations) {
+
+        try (FileWriter fch = new FileWriter("nv_reservations.csv")) {
+
+            CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
+                    .setHeader(new String[]{"jour", "de", "à", "id", "prévu à"})
+                    .build();
+
+            CSVPrinter printer = null;
+            printer = new CSVPrinter(fch, csvFormat);
+            for (var reservation : reservations) {
+                printer.printRecord(
+                        vol.get("Date"),
+                        vol.get("Dép"),
+                        vol.get("Arriv"),
+                        vol.get("Code"),
+                        vol.get("Heure")
+                );
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException("Problème...",e);
+        }
+        // "Close" automatique...
+    }
+
+    public static List<Map<String, String>> lireCSV() throws IOException {
+
+        Reader in = new FileReader("./reservations.csv");
+
+        CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
+                .setHeader(new String[]{"Code", "Dép", "Arriv", "Date", "Heure"})
+                .setSkipHeaderRecord(true)
+                .setDelimiter('|')
+                .setIgnoreSurroundingSpaces(true)
+                .build();
+
+        Iterable<CSVRecord> records = csvFormat.parse(in);
+
+        List<Map<String,String>> vols = new ArrayList<>();
+        for (CSVRecord record : records) {
+            Map<String,String> vol = new HashMap<>();
+            vol.put("Code", record.get("Code"));
+            vol.put("Dép", record.get("Dép"));
+            vol.put("Arriv", record.get("Arriv"));
+            vol.put("Date", record.get("Date"));
+            vol.put("Heure", record.get("Heure"));
+            vols.add(reservation);
+        }
+
+        in.close();
+        //System.out.println(reservations);
+        return reservations;
+    }
+
+}
+
