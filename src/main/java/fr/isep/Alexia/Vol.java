@@ -1,60 +1,53 @@
 package fr.isep.Alexia;
 
-public class Vol extends (Reservation, Avion){
-    private int NumeroVol, String Origine,
-    String Destination, int DateHeureDepart, String Etat,
-    int numeroReservation, int dateReservation, String Statut
-    String nom, int identification, int adresse, int contact,
-    String passeport,
-}
-      super(NumeroVol,Origine,Destination,
-       DateHeureDepart, Etat, Statut, nom, identification, dateReservation,
-       numeroReservation, adresse, contact, passeport)
+public class Vol {
+    private int numeroVol;
+    private String origine;
+    private String destination;
+    private String dateHeureDepart;
+    private String dateHeureArrivee;
+    private String etat;
 
-public intNumeroVol  getintNumeroVol(){
-    return NumeroVol
-}
-public StringOrignine getStringOrigine(){
-    return Origine
-}
-public StringDestination getStringDestination(){
-    return Destination
-}
-public intDateHeureDepart getintDateHeureDepart(){
-    return DateHeureDepart
-}
-public intDateHeureArrivee getintDateHeureArrivee(){
-    return DateHeueArrivee
-}
-public StringEtat getStringEtat(){
-    return Etat
-}
-public void setStringOrigine(StringOrigine StringOrigine){
-    this.StringOrigine = StringOrigine
-}
-public void setintNumeroVol(intNumeroVol intNumeroVol){
-    this.intNumeroVol = intNumeroVol
-}
-public void setintDateHeureArrivee(intDateHeureArrivee intDateHeureArrivee){
-    this.intDateHeureArrivee = int DateHeureArrivee
-}
-public void setintDateHeureDepart( intDateHeureDepart intDateHeureDepart){
-    this.intDateHeureDepart = IntDateHeureDepart
-}
-public void setStringDestination( StringDestination StringDestination){
-    this.StringDestination = StringDestination
-}
-public void setStringEtat(StringEtat StringEtat){
-    this.StringEtat = StringEtat
-}
-void Afficher(){
-    System.out.println();
-    System.out.println();
-    Sustem.out.println();
-}
+    public Vol(int numeroVol, String origine, String destination, String dateHeureDepart, String dateHeureArrivee, String etat) {
+        this.numeroVol = numeroVol;
+        this.origine = origine;
+        this.destination = destination;
+        this.dateHeureDepart = dateHeureDepart;
+        this.dateHeureArrivee = dateHeureArrivee;
+        this.etat = etat;
+    }
 
+    // Getters et Setters
+    public int getNumeroVol() { return numeroVol; }
+    public void setNumeroVol(int numeroVol) { this.numeroVol = numeroVol; }
+
+    public String getOrigine() { return origine; }
+    public void setOrigine(String origine) { this.origine = origine; }
+
+    public String getDestination() { return destination; }
+    public void setDestination(String destination) { this.destination = destination; }
+
+    public String getDateHeureDepart() { return dateHeureDepart; }
+    public void setDateHeureDepart(String dateHeureDepart) { this.dateHeureDepart = dateHeureDepart; }
+
+    public String getDateHeureArrivee() { return dateHeureArrivee; }
+    public void setDateHeureArrivee(String dateHeureArrivee) { this.dateHeureArrivee = dateHeureArrivee; }
+
+    public String getEtat() { return etat; }
+    public void setEtat(String etat) { this.etat = etat; }
+
+    public void afficher() {
+        System.out.println("Numéro de vol : " + numeroVol);
+        System.out.println("Origine : " + origine);
+        System.out.println("Destination : " + destination);
+        System.out.println("Départ : " + dateHeureDepart);
+        System.out.println("Arrivée : " + dateHeureArrivee);
+        System.out.println("État : " + etat);
+    }
+}
 package fr.isep.hal;
 
+import fr.isep.Alexia.Vol;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
@@ -64,69 +57,43 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class DemoCSV {
     public static void main(String[] args) throws IOException {
-        var vols = lireCSV();
-        //ecrireCSV(vols);
+        List<Vol> vols = lireCSV();
+        ecrireCSV(vols);
         ecrireCSV_try(vols);
     }
 
-    private static void ecrireCSV(List<Map<String, String>> vols) throws IOException {
+    // Méthode pour écrire les vols dans un fichier CSV
+    private static void ecrireCSV(List<Vol> vols) throws IOException {
         FileWriter fch = new FileWriter("nv_vols.csv");
 
         CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
-                .setHeader(new String[]{"jour", "de", "à", "id", "prévu à"})
-        CSVPrinter printer = new CSVPrinter(fch, csvFormat);
-        for (var vol : vols) {
-            printer.printRecord(
-                    vol.get("Date"),
-                    vol.get("Dép"),
-                    vol.get("Arriv"),
-                    vol.get("Code"),
-                    vol.get("Heure")
-            );
-        }
+                .setHeader("Numéro", "Origine", "Destination", "Départ", "Arrivée", "État")
+                .build();
 
-        fch.close(); // Attention, fichier EN ECRITURE non fermé si exception
-
-    }
-
-    private static void ecrireCSV_try(List<Map<String, String>> vols) {
-
-        try (FileWriter fch = new FileWriter("nv_vols.csv")) {
-
-            CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
-                    .setHeader(new String[]{"jour", "de", "à", "id", "prévu à"})
-                    .build();
-
-            CSVPrinter printer = null;
-            printer = new CSVPrinter(fch, csvFormat);
-            for (var vol : vols) {
+        try (CSVPrinter printer = new CSVPrinter(fch, csvFormat)) {
+            for (Vol vol : vols) {
                 printer.printRecord(
-                        vol.get("Date"),
-                        vol.get("Dép"),
-                        vol.get("Arriv"),
-                        vol.get("Code"),
-                        vol.get("Heure")
+                        vol.getNumeroVol(),
+                        vol.getOrigine(),
+                        vol.getDestination(),
+                        vol.getDateHeureDepart(),
+                        vol.getDateHeureArrivee(),
+                        vol.getEtat()
                 );
             }
-
-        } catch (IOException e) {
-            throw new RuntimeException("Problème...",e);
         }
-        // "Close" automatique...
     }
 
-    public static List<Map<String, String>> lireCSV() throws IOException {
-
+    // Méthode pour lire les vols depuis un fichier CSV
+    public static List<Vol> lireCSV() throws IOException {
         Reader in = new FileReader("./vols.csv");
 
         CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
-                .setHeader(new String[]{"Code", "Dép", "Arriv", "Date", "Heure"})
+                .setHeader("Numéro", "Origine", "Destination", "Départ", "Arrivée", "État")
                 .setSkipHeaderRecord(true)
                 .setDelimiter('|')
                 .setIgnoreSurroundingSpaces(true)
@@ -134,20 +101,46 @@ public class DemoCSV {
 
         Iterable<CSVRecord> records = csvFormat.parse(in);
 
-        List<Map<String,String>> vols = new ArrayList<>();
+        List<Vol> vols = new ArrayList<>();
         for (CSVRecord record : records) {
-            Map<String,String> vol = new HashMap<>();
-            vol.put("Code", record.get("Code"));
-            vol.put("Dép", record.get("Dép"));
-            vol.put("Arriv", record.get("Arriv"));
-            vol.put("Date", record.get("Date"));
-            vol.put("Heure", record.get("Heure"));
-            vols.add(vol);
+            try {
+                int numero = Integer.parseInt(record.get("Numéro"));
+                String origine = record.get("Origine");
+                String destination = record.get("Destination");
+                String depart = record.get("Départ");
+                String arrivee = record.get("Arrivée");
+                String etat = record.get("État");
+
+                vols.add(new Vol(numero, origine, destination, depart, arrivee, etat));
+            } catch (Exception e) {
+                System.err.println("Erreur lors de la lecture d'une ligne : " + e.getMessage());
+            }
         }
 
         in.close();
-        //System.out.println(vols);
         return vols;
     }
 
+    // Méthode pour écrire les vols avec `try-with-resources`
+    private static void ecrireCSV_try(List<Vol> vols) {
+        try (FileWriter fch = new FileWriter("nv_vols_try.csv");
+             CSVPrinter printer = new CSVPrinter(fch, CSVFormat.DEFAULT.builder()
+                     .setHeader("Numéro", "Origine", "Destination", "Départ", "Arrivée", "État")
+                     .build())) {
+
+            for (Vol vol : vols) {
+                printer.printRecord(
+                        vol.getNumeroVol(),
+                        vol.getOrigine(),
+                        vol.getDestination(),
+                        vol.getDateHeureDepart(),
+                        vol.getDateHeureArrivee(),
+                        vol.getEtat()
+                );
+            }
+
+        } catch (IOException e) {
+            System.err.println("Erreur lors de l'écriture : " + e.getMessage());
+        }
+    }
 }

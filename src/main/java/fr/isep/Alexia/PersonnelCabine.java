@@ -1,23 +1,34 @@
 package fr.isep.Alexia;
 
+// La classe PersonnelCabine hérite de Employe
 public class PersonnelCabine extends Employe {
     private String qualification;
-    public class PersonnelCabine{
-           String qualification, String nom,
-        int identifiant, int adresse, int contact
+
+    // Constructeur
+    public PersonnelCabine(String nom, int identifiant, int adresse, int contact, int numeroEmploye, int dateEmbauche, String qualification) {
+        super(nom, identifiant, adresse, contact, numeroEmploye, dateEmbauche);
+        this.qualification = qualification;
     }
-    super String qualification, String nom,
-    int identifiant, int adresse, int contact
-}
-public String qualification getstringqualification(){
-    return stringqualification
-}
-public void Setstringqualification
-        (Stringqualifiction Stringqualification){
-    this.Stringqualification = stringqualification;
-}
-void Afficher() {
-    System.out.println();
-    System.out.println();
-    System.out.println();
+
+    // Getter pour la qualification
+    public String getQualification() {
+        return qualification;
+    }
+
+    // Setter pour la qualification
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
+    }
+
+    // Implémentation de la méthode afficher
+    @Override
+    void afficher() {
+        System.out.println("Nom : " + nom);
+        System.out.println("Identifiant : " + identifiant);
+        System.out.println("Adresse : " + adresse);
+        System.out.println("Contact : " + contact);
+        System.out.println("Numéro Employé : " + numeroEmploye);
+        System.out.println("Date d'embauche : " + dateEmbauche);
+        System.out.println("Qualification : " + qualification);
+    }
 }

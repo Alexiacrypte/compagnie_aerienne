@@ -1,23 +1,32 @@
 package fr.isep.Alexia;
 
-public class Passager extends Personne  {
-    private String passseport;
+// La classe Passager hérite de Personne
+public class Passager extends Personne {
+    private String passeport;
 
-    public  class Passeport {
-        String nom, Stringpasseport, int identifiant, int adresse, int contact, ;
+    // Constructeur
+    public Passager(String nom, int identifiant, int adresse, int contact, String passeport) {
+        super(nom, identifiant, contact, adresse);
+        this.passeport = passeport;
     }
-    super (nom, identifiant, adresse, contact, passeport);
-    this.Stringpasseport = string passeport;
 
-}
-public StringPasseport getStringPasseport(){
-    return stringPasseport;
-}
-public void setStringPasseport(StringPasseport stringPasseport) {
-    this.stringPasseport = stringPasseport;
-}
-void Afficher(){
-    System.out.println();
-    System.out.println();
-    System.out.println();
+    // Getter pour le passeport
+    public String getPasseport() {
+        return passeport;
+    }
+
+    // Setter pour le passeport
+    public void setPasseport(String passeport) {
+        this.passeport = passeport;
+    }
+
+    // Méthode pour afficher les informations du passager
+    @Override
+    void afficher() {
+        System.out.println("Nom : " + nom);
+        System.out.println("Identifiant : " + identifiant);
+        System.out.println("Adresse : " + adresse);
+        System.out.println("Contact : " + contact);
+        System.out.println("Passeport : " + passeport);
+    }
 }

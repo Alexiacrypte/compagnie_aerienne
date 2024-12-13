@@ -1,28 +1,16 @@
-package fr.isep.Alexia;
+public class Main {
+    public static void main(String[] args) {
+        // Création d'un aéroport
+        Aeroport aeroport = new Aeroport("Charles de Gaulle", "Paris", "Le plus grand aéroport de France", 12345, "95700 Roissy-en-France", "+33 1 70 36 39 50", "Ouvert");
 
-public class Aeroport extends Vol{
-    String nom, StringVille, Stringdescriptioon, int identifiant,
-    int adresse, int contact, String nom, String statut,
-    String Etat, String passeport, int Numerovol, String
+        // Affichage des informations de l'aéroport
+        aeroport.afficher();
+
+        // Mise à jour du statut
+        aeroport.setStatut("Fermé temporairement");
+
+        // Affichage après mise à jour
+        System.out.println("\nAprès mise à jour :");
+        aeroport.afficher();
+    }
 }
-    super String nom, String ville, String description, int identifiant,
-    int adresse, int contact, String passeport, String Etat;
-    String Statut,
-
- public Stringnom getstringnom(){
-        return nom
- }
- public Stringville getStringville(){
-        return ville
- }
- public Stringdescription getdescription(){
-        return description
- }
- public void SetStringville( Stringville StringVille){
-        this.Stringville = StringVille;
- }
- void Afficher(){
-        System.out.println();
-        System.out.println();
-        System.out.println();
- }

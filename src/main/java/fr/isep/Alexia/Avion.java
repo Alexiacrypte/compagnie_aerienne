@@ -1,72 +1,57 @@
 package fr.isep.Alexia;
 
-public class Avion extens Vol{
-    private int immatriculation, Modelemodele, Stringcapacite;
-    public class Vol{ int immatriculation, Modelemodele, Stringcapacite,
-        String Destination, String Origine, intNumeroVol, String Etat,
-        intDateHeureArrivee, int DateHeureDepart
+// La classe Avion hérite de Vol
+public class Avion extends Vol {
+    private int immatriculation;
+    private String modele;
+    private String capacite;
 
+    // Constructeur
+    public Avion(int immatriculation, String modele, String capacite, String destination, String origine,
+                 int numeroVol, String etat, int dateHeureArrivee, int dateHeureDepart) {
+        super(numeroVol, origine, destination, dateHeureDepart, dateHeureArrivee, etat);
+        this.immatriculation = immatriculation;
+        this.modele = modele;
+        this.capacite = capacite;
     }
-  super(immatriculation, Modelemodele, capacite,
-    Destination,DateHeureDepart, DateHeureArrivee, Origine, NumeroVol,
-            Etat)
-}
-public int immatriculation getintimmatriculation(){
-    return immatriculation
-}
-public Modelemodele getModelemodele(){
-    return Modelemodele
-}
-public Stringcapacite getStringcapacite(){
-    return capacite
-}
-public String Destination getStringDestination(){
-    return Destination
-}
-public intNumeroVol getintNumeroVol(){
-    return NumeroVol
-}
-public StringOrigine getStringOrigine(){
-    return Origine
-}
-public String Etat getStringEtat(){
-    return Etat
-}
-public intDateHeureArrivee getintDateHeureArrivee(){
-    return DateHeureArrivee
-}
-public intDateHeureDepart getDateHeureDepart (){
-    return DateHeureDepart
-}
-public void setintimmatriculation(int immatriculation int immatriculation){
-    this.intimmatriculation = intimmatriculation
-}
-public void setModelemodele(Modelemodele Modelemodele){
-    this.Modelemodele = Modelemodele
-}
-public void setStringcapacite( Stringcapacite Stringcapacite){
-    this.Stringcapacite = Stringcapacite
-}
-public void setStringDestination( StringDestination StringDestination){
-    this.StringDestination = StringDestination
-}
-public void setintNumeroVol (intNumeroVol intNumeroVol){
-    this.intNumeroVol = intNumeroVol
-}
-public void setStringOrigine( StringOrigine StringOrigine){
-    this.StringOrigine = StringOrigine
-}
-public void setStringEtat( StringEtat StringEtat){
-    this.StringEtat = StringEtat
-}
-public void setintDateHeureArrivee( intDateHeureArrivee intDateHeureArrivee){
-    this.intDateHeureArrivee = intDateHeureArrivee
-}
-public void setintDateHeureDepart( intDateHeureDepart intDateHeureDepart){
-    this.intDateHeureDepart = intDateHeureDepart
-}
-void Afficher(){
-    System.out.println();
-    System.out.println();
-    System.out.println();
+
+    // Getters
+    public int getImmatriculation() {
+        return immatriculation;
+    }
+
+    public String getModele() {
+        return modele;
+    }
+
+    public String getCapacite() {
+        return capacite;
+    }
+
+    // Setters
+    public void setImmatriculation(int immatriculation) {
+        this.immatriculation = immatriculation;
+    }
+
+    public void setModele(String modele) {
+        this.modele = modele;
+    }
+
+    public void setCapacite(String capacite) {
+        this.capacite = capacite;
+    }
+
+    // Méthode pour afficher les informations de l'avion
+    @Override
+    void afficher() {
+        System.out.println("Immatriculation : " + immatriculation);
+        System.out.println("Modèle : " + modele);
+        System.out.println("Capacité : " + capacite);
+        System.out.println("Destination : " + getDestination());
+        System.out.println("Origine : " + getOrigine());
+        System.out.println("Numéro de vol : " + getNumeroVol());
+        System.out.println("État : " + getEtat());
+        System.out.println("Date et heure d'arrivée : " + getDateHeureArrivee());
+        System.out.println("Date et heure de départ : " + getDateHeureDepart());
+    }
 }
